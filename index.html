@@ -1,0 +1,397 @@
+
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mading Digital Kelas 1</title>
+
+<style>
+:root{
+  --bg:#101b3d;
+  --gold:#f4c95d;
+  --muted:#b9c5df;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,Arial,sans-serif;
+  color:#fff;
+  background:
+    radial-gradient(ellipse at 10% 0%,#293d73,transparent 45%),
+    var(--bg);
+}
+main{
+  width:min(1180px,calc(100% - 28px));
+  margin:auto;
+  padding:24px 0 40px;
+}
+.hero{
+  padding:clamp(24px,5vw,48px);
+  border-radius:26px;
+  background:linear-gradient(135deg,#253966,#172449);
+  border:1px solid #ffffff22;
+  box-shadow:0 20px 50px #0003;
+}
+.eyebrow{
+  color:var(--gold);
+  font-size:.78rem;
+  letter-spacing:.15em;
+  font-weight:800;
+  text-transform:uppercase;
+}
+h1{
+  font-size:clamp(2rem,5vw,3.8rem);
+  line-height:1.05;
+  margin:12px 0;
+}
+.hero p{
+  max-width:680px;
+  line-height:1.7;
+  color:#dce4f5;
+  margin-bottom:0;
+}
+.toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+  margin:25px 0 18px;
+}
+.tabs{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.tab{
+  cursor:pointer;
+  border:1px solid #ffffff30;
+  border-radius:999px;
+  padding:12px 17px;
+  background:#ffffff0d;
+  color:white;
+  font:inherit;
+  font-weight:750;
+}
+.tab[aria-pressed=true]{
+  background:var(--gold);
+  color:#17213a;
+  border-color:var(--gold);
+}
+.count{
+  color:var(--muted);
+  font-size:.9rem;
+}
+h2{
+  font-size:clamp(1.35rem,3vw,1.9rem);
+  margin:0;
+}
+.sub{
+  color:var(--muted);
+  margin:5px 0 16px;
+  font-size:.92rem;
+}
+.gallery{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:16px;
+  max-width:1000px;
+  margin:0 auto;
+}
+.poster{
+  width:100%;
+  min-width:0;
+  text-align:center;
+  padding:10px;
+  border:1px solid #ffffff35;
+  border-radius:17px;
+  background:#ffffff0d;
+  color:#fff;
+  cursor:pointer;
+  box-shadow:0 12px 24px #0003;
+  transition:transform .2s;
+}
+.poster:hover{transform:translateY(-2px)}
+.poster img{
+  width:100%;
+  max-height:72vh;
+  object-fit:contain;
+  border-radius:10px;
+  display:block;
+  background:#e8ebf2;
+}
+.poster-title{
+  display:block;
+  font-size:1rem;
+  font-weight:800;
+  line-height:1.35;
+  margin:10px 3px 0;
+}
+.tag{
+  display:block;
+  color:var(--muted);
+  font-size:.75rem;
+  font-weight:750;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin:7px 3px 0;
+}
+footer{
+  text-align:center;
+  color:#9eaccb;
+  margin-top:30px;
+  font-size:.85rem;
+}
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:5;
+  background:#050918ef;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+}
+.modal.open{display:flex}
+.panel{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  max-width:min(1000px,100%);
+  max-height:94vh;
+}
+.panel img{
+  max-width:100%;
+  max-height:78vh;
+  object-fit:contain;
+  border-radius:10px;
+  background:white;
+}
+.caption{
+  font-weight:750;
+  text-align:center;
+}
+.close{
+  position:absolute;
+  right:-12px;
+  top:-15px;
+  z-index:2;
+  border:0;
+  border-radius:50%;
+  width:42px;
+  height:42px;
+  background:var(--gold);
+  color:#17213a;
+  font-size:1.5rem;
+  cursor:pointer;
+}
+@media(max-width:720px){
+  main{
+    width:calc(100% - 20px);
+    padding-top:10px;
+  }
+  .gallery{gap:11px}
+  .poster{padding:6px}
+  .poster-title{font-size:.9rem}
+  .hero{border-radius:20px}
+}
+@media(max-width:460px){
+  .tab{
+    padding:10px 13px;
+    font-size:.88rem;
+  }
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<header class="hero">
+  <div class="eyebrow">Ruang Karya & Informasi</div>
+  <h1>Mading Digital Kelas 1</h1>
+  <p>
+    Selamat datang di dunia belajar kelas 1!
+    Pilih tema mading untuk melihat karya dan informasi
+    menarik seputar sekolah serta teman-teman baru.
+    Klik gambar untuk memperbesar.
+  </p>
+</header>
+
+<nav class="toolbar" aria-label="Kategori poster">
+  <div class="tabs">
+    <button class="tab"
+      data-category="lingkungan"
+      aria-pressed="true">
+      Pengenalan & Perawatan Lingkungan Sekolah
+    </button>
+
+    <button class="tab"
+      data-category="perkenalan"
+      aria-pressed="false">
+      Mading Perkenalan Siswa Baru
+    </button>
+  </div>
+
+  <div class="count" id="count"></div>
+</nav>
+
+<section>
+  <h2 id="heading"></h2>
+  <p class="sub" id="sub"></p>
+  <div class="gallery" id="gallery"></div>
+</section>
+
+<footer>
+  © Mading Digital Kelas 1 · Belajar, Berkarya, dan Berbagi
+</footer>
+
+</main>
+
+<div class="modal" id="modal"
+  role="dialog" aria-modal="true"
+  aria-label="Gambar mading diperbesar">
+
+  <div class="panel">
+    <button class="close" id="close"
+      aria-label="Tutup">×</button>
+
+    <img id="large" alt="">
+    <div class="caption" id="caption"></div>
+  </div>
+</div>
+
+<script>
+const posters = {
+  lingkungan: [{
+    image: '1.jpg',
+    title: 'Pengenalan & Perawatan Lingkungan Sekolah'
+  }],
+
+  perkenalan: [{
+    image: '2.jpg',
+    title: 'Mading Perkenalan Siswa Baru'
+  }]
+};
+
+const gallery = document.querySelector('#gallery');
+const heading = document.querySelector('#heading');
+const sub = document.querySelector('#sub');
+const count = document.querySelector('#count');
+
+const modal = document.querySelector('#modal');
+const large = document.querySelector('#large');
+const caption = document.querySelector('#caption');
+const closeButton = document.querySelector('#close');
+
+function render(category){
+  gallery.replaceChildren();
+
+  const items = posters[category];
+
+  heading.textContent =
+    category === 'lingkungan'
+      ? 'Pengenalan & Perawatan Lingkungan Sekolah'
+      : 'Mading Perkenalan Siswa Baru';
+
+  sub.textContent =
+    category === 'lingkungan'
+      ? 'Yuk, kenali sekolah dan jaga kebersihannya bersama!'
+      : 'Kenalan dengan teman baru dan mulai petualangan belajar!';
+
+  count.textContent = 'Menampilkan 1 gambar mading';
+
+  document.querySelectorAll('.tab').forEach(button => {
+    button.setAttribute(
+      'aria-pressed',
+      String(button.dataset.category === category)
+    );
+  });
+
+  items.forEach(p => {
+    const card = document.createElement('button');
+    card.className = 'poster';
+    card.type = 'button';
+    card.setAttribute(
+      'aria-label',
+      'Perbesar gambar: ' + p.title
+    );
+
+    const img = document.createElement('img');
+    img.src = p.image;
+    img.alt = p.title;
+    img.loading = 'lazy';
+
+    img.onerror = () => {
+      img.onerror = null;
+
+      const note = document.createElement('div');
+      note.style.cssText =
+        'min-height:180px;display:grid;place-items:center;' +
+        'text-align:center;padding:20px;background:#e8ebf2;' +
+        'color:#5d6780;border-radius:10px;font-size:.9rem';
+
+      note.textContent =
+        'Gambar belum ditemukan. Pastikan file ' +
+        p.image + ' sudah diunggah.';
+
+      img.replaceWith(note);
+    };
+
+    const name = document.createElement('span');
+    name.className = 'poster-title';
+    name.textContent = p.title;
+
+    const tag = document.createElement('span');
+    tag.className = 'tag';
+    tag.textContent = 'Mading Digital Kelas 1';
+
+    card.append(img, name, tag);
+
+    card.addEventListener('click', () => {
+      large.src = p.image;
+      large.alt = p.title;
+      caption.textContent = p.title;
+      modal.classList.add('open');
+      closeButton.focus();
+    });
+
+    gallery.append(card);
+  });
+}
+
+document.querySelectorAll('.tab').forEach(button => {
+  button.addEventListener('click', () => {
+    render(button.dataset.category);
+  });
+});
+
+function closeModal(){
+  modal.classList.remove('open');
+  large.src = '';
+}
+
+closeButton.addEventListener('click', closeModal);
+
+modal.addEventListener('click', event => {
+  if(event.target === modal) closeModal();
+});
+
+document.addEventListener('keydown', event => {
+  if(event.key === 'Escape') closeModal();
+});
+
+large.addEventListener('error', () => {
+  if(modal.classList.contains('open')){
+    caption.textContent =
+      'Gambar tidak ditemukan. Periksa nama file gambar.';
+  }
+});
+
+render('lingkungan');
+</script>
+</body>
+</html>
